@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
+	<FrameLayout
+		android:id="@+id/fl_tape"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerInParent="true">
+
+		<ImageView
+			android:id="@+id/iv_volume"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:src="@drawable/level_volume"/>
+
+		<CheckBox
+			android:id="@+id/cb_tape"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:button="@null"
+			android:background="@drawable/selector_tape"/>
+	</FrameLayout>
+
+	<TextView
+		android:id="@+id/tv_tip"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_above="@id/fl_tape"
+		android:layout_centerHorizontal="true"
+		android:layout_marginBottom="64dp"
+		android:textSize="28sp"
+		android:text="按住录音"/>
+
+	<com.henry.speechevaluation.TimerView
+		android:id="@+id/tv_time"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentRight="true"
+		android:layout_alignBaseline="@id/tv_tip"
+		android:layout_marginRight="16dp"
+		android:textSize="28sp"
+		android:text="00:00"
+		android:visibility="gone"/>
+</RelativeLayout>

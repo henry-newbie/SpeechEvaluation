@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
+
+	<com.henry.speechevaluation.TapeView
+		android:id="@+id/tv_tape"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent" />
+
+	<RelativeLayout
+		android:id="@+id/rl_score"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:visibility="gone">
+		
+		<TextView
+			android:id="@+id/tv_score"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/level_score"
+			android:layout_centerInParent="true"
+			android:gravity="center"
+			android:textColor="#ffffff"
+			android:textSize="64sp"
+			android:text="正在打分"/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_above="@id/tv_score"
+			android:layout_centerHorizontal="true"
+			android:layout_marginBottom="64dp"
+			android:textSize="20sp"
+			android:text="这是本次评测的成绩，点击重新评测"/>
+	</RelativeLayout>
+</FrameLayout>
