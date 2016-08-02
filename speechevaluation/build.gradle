@@ -1,11 +1,12 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.3"
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -23,4 +24,13 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/Msc.jar')
     compile files('libs/Sunflower.jar')
+}
+
+publish {
+    userOrg = 'henry0311'
+    groupId = 'com.henry'
+    artifactId = 'SpeechEvaluation'
+    publishVersion = '1.0.0'
+    desc = 'fix bug'
+    website = 'https://github.com/henry-newbie/SpeechEvaluation'
 }
