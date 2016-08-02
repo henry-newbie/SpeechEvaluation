@@ -21,11 +21,13 @@ public class SpeechEvaluationView extends FrameLayout {
 
     RelativeLayout rlScore;
 
-    TextView tvScore;
+    TextView tvScore, tvLabel;
 
     SpeechEvaluatorUtil speechEvaluatorUtil;
 
     String language, category, content;
+
+    SpeechEvaluatorCallback speechEvaluatorCallback;
 
     public SpeechEvaluationView(Context context) {
         this(context, null);
@@ -46,6 +48,7 @@ public class SpeechEvaluationView extends FrameLayout {
         tvTape = (TapeView) findViewById(R.id.tv_tape);
         rlScore = (RelativeLayout) findViewById(R.id.rl_score);
         tvScore = (TextView) findViewById(R.id.tv_score);
+        tvLabel = (TextView) findViewById(R.id.tv_label);
 
         speechEvaluatorUtil = new SpeechEvaluatorUtil();
         speechEvaluatorUtil.init(context);
@@ -106,6 +109,10 @@ public class SpeechEvaluationView extends FrameLayout {
 
                 // 显示得分
                 setScore(score);
+
+                if(speechEvaluatorCallback != null) {
+                    speechEvaluatorCallback.onResult(score);
+                }
             }
 
             @Override
@@ -118,6 +125,7 @@ public class SpeechEvaluationView extends FrameLayout {
 
     /**
      * 设置分数
+     *
      * @param score
      */
     private void setScore(int score) {
@@ -140,10 +148,11 @@ public class SpeechEvaluationView extends FrameLayout {
 
     /**
      * 设置参数
-     * @param language  语言
-     * @param category  词语还是句子
-     * @param timeout   超时
-     * @param content   内容
+     *
+     * @param language 语言
+     * @param category 词语还是句子
+     * @param timeout  超时
+     * @param content  内容
      */
     public void setContent(String language, String category, int timeout, String content) {
         this.language = language;
@@ -154,5 +163,36 @@ public class SpeechEvaluationView extends FrameLayout {
         } else {
             this.content = content;
         }
+    }
+
+    /**
+     * 只展示结果页
+     *
+     * @param score
+     */
+    public void displayResult(int score) {
+        tvTape.setVisibility(GONE);
+        rlScore.setVisibility(VISIBLE);
+        tvLabel.setVisibility(GONE);
+        rlScore.setEnabled(false);
+        setScore(score);
+    }
+
+    /**
+     * 重置
+     */
+    public void reset() {
+        tvTape.setVisibility(VISIBLE);
+        tvLabel.setVisibility(VISIBLE);
+        rlScore.setVisibility(GONE);
+        rlScore.setEnabled(true);
+    }
+
+    public void setListener(SpeechEvaluatorCallback speechEvaluatorCallback) {
+        this.speechEvaluatorCallback = speechEvaluatorCallback;
+    }
+
+    public interface SpeechEvaluatorCallback {
+        void onResult(int score);
     }
 }

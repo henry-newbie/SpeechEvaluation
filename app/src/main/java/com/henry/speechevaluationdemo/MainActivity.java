@@ -2,6 +2,7 @@ package com.henry.speechevaluationdemo;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.henry.speechevaluation.SpeechEvaluationView;
 import com.henry.speechevaluation.SpeechEvaluatorUtil;
@@ -17,5 +18,13 @@ public class MainActivity extends AppCompatActivity {
 
         speechEvaluationView = (SpeechEvaluationView) findViewById(R.id.sev_speech);
         speechEvaluationView.setContent(SpeechEvaluatorUtil.TYPE_LANGUAGE_EN, SpeechEvaluatorUtil.TYPE_CATEGORY_WORD, 5000, "hello");
+//        speechEvaluationView.displayResult(20);
+//        speechEvaluationView.reset();
+        speechEvaluationView.setListener(new SpeechEvaluationView.SpeechEvaluatorCallback() {
+            @Override
+            public void onResult(int score) {
+                Toast.makeText(MainActivity.this, score + "", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

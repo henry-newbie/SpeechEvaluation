@@ -28,6 +28,7 @@
 			android:text="正在打分"/>
 
 		<TextView
+			android:id="@+id/tv_label"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_above="@id/tv_score"
