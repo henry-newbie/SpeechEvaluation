@@ -3,7 +3,7 @@
     <declare-styleable name="SpeechEvaluationView">
         <attr name="tapeBackground" format="reference"/>
         <attr name="volumeBackground" format="reference"/>
-        <attr name="textSize" format="dimension"/>
+        <attr name="labelTextSize" format="dimension"/>
         <attr name="scoreTextSize" format="dimension"/>
         <attr name="scoreBackgroundSize" format="dimension"/>
     </declare-styleable>

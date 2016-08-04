@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
  * Created by henry on 2016/7/26.
  */
-public class TapeView extends FrameLayout {
+public class TapeView extends RelativeLayout {
 
     Context context;
 
@@ -64,7 +65,7 @@ public class TapeView extends FrameLayout {
 //        ivVolume.setBackgroundDrawable(drawable);
 //    }
 
-    protected void setResourse(Drawable tapeBackground, Drawable volumeBackground, int textSize) {
+    protected void setResource(Drawable tapeBackground, Drawable volumeBackground, int textSize) {
         cbTape.setBackgroundDrawable(tapeBackground);
         ivVolume.setImageDrawable(volumeBackground);
         tvTip.setTextSize(textSize);

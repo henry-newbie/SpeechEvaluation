@@ -6,8 +6,6 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LevelListDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.Shape;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -52,7 +50,7 @@ public class SpeechEvaluationView extends FrameLayout {
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SpeechEvaluationView);
         tapeBackground = typedArray.getDrawable(R.styleable.SpeechEvaluationView_tapeBackground);
         volumeBackground = typedArray.getDrawable(R.styleable.SpeechEvaluationView_volumeBackground);
-        textSize = typedArray.getDimensionPixelSize(R.styleable.SpeechEvaluationView_textSize, getResources().getDimensionPixelSize(R.dimen.text_size));
+        textSize = typedArray.getDimensionPixelSize(R.styleable.SpeechEvaluationView_labelTextSize, getResources().getDimensionPixelSize(R.dimen.text_size));
 
         scoreTextSize = typedArray.getDimensionPixelSize(R.styleable.SpeechEvaluationView_scoreTextSize, getResources().getDimensionPixelSize(R.dimen.text_size));
         scoreBackgroundSize = typedArray.getDimensionPixelSize(R.styleable.SpeechEvaluationView_scoreBackgroundSize, getResources().getDimensionPixelSize(R.dimen.scoreBackgroundSize));
@@ -83,7 +81,7 @@ public class SpeechEvaluationView extends FrameLayout {
         tvScore.setBackgroundDrawable(setScoreBackgroundSize(scoreBackgroundSize));
 //        tvScore.setBackgroundDrawable(scoreBackground);
 
-        tvTape.setResourse(tapeBackground, volumeBackground, textSize);
+        tvTape.setResource(tapeBackground, volumeBackground, textSize);
 //        tvTape.setTapeBackground(tapeBackground);
 //        tvTape.setVolumeBackground(volumeBackground);
         tvTape.setOnTapeCallback(new TapeView.OnTapeCallback() {
