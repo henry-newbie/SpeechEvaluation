@@ -33,7 +33,7 @@
 			android:layout_height="wrap_content"
 			android:layout_above="@id/tv_score"
 			android:layout_centerHorizontal="true"
-			android:layout_marginBottom="64dp"
+			android:layout_marginBottom="40dp"
 			android:textSize="20sp"
 			android:text="这是本次评测的成绩，点击重新评测"/>
 	</RelativeLayout>

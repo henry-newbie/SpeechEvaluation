@@ -50,27 +50,30 @@ public class SpeechEvaluationView extends FrameLayout {
         tvScore = (TextView) findViewById(R.id.tv_score);
         tvLabel = (TextView) findViewById(R.id.tv_label);
 
-        speechEvaluatorUtil = new SpeechEvaluatorUtil();
-        speechEvaluatorUtil.init(context);
-
         tvTape.setOnTapeCallback(new TapeView.OnTapeCallback() {
             @Override
             public void start() {
                 Log.e("start", "start");
-                speechEvaluatorUtil.setParams(language, category, "-1");
-                speechEvaluatorUtil.start(content, getEvaluatorCallback());
+                if(speechEvaluatorUtil != null) {
+                    speechEvaluatorUtil.setParams(language, category, "-1");
+                    speechEvaluatorUtil.start(content, getEvaluatorCallback());
+                }
             }
 
             @Override
             public void cancel() {
                 Log.e("cancel", "cancel");
-                speechEvaluatorUtil.cancel();
+                if(speechEvaluatorUtil != null) {
+                    speechEvaluatorUtil.cancel();
+                }
             }
 
             @Override
             public void stop() {
                 Log.e("stop", "stop");
-                speechEvaluatorUtil.stop();
+                if(speechEvaluatorUtil != null) {
+                    speechEvaluatorUtil.stop();
+                }
 
                 setLoading();
                 rlScore.setVisibility(VISIBLE);
@@ -121,6 +124,20 @@ public class SpeechEvaluationView extends FrameLayout {
                 setScore(0);
             }
         };
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        speechEvaluatorUtil = new SpeechEvaluatorUtil();
+        speechEvaluatorUtil.init(context);
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        speechEvaluatorUtil.destroy();
+        speechEvaluatorUtil = null;
     }
 
     /**
