@@ -24,7 +24,6 @@
 			android:layout_centerInParent="true"
 			android:gravity="center"
 			android:textColor="#ffffff"
-			android:textSize="64sp"
 			android:text="正在打分"/>
 
 		<TextView
@@ -35,6 +34,7 @@
 			android:layout_centerHorizontal="true"
 			android:layout_marginBottom="40dp"
 			android:textSize="20sp"
+			android:textColor="#343434"
 			android:text="这是本次评测的成绩，点击重新评测"/>
 	</RelativeLayout>
 </FrameLayout>

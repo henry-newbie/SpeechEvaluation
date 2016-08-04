@@ -1,7 +1,13 @@
 package com.henry.speechevaluation;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.LevelListDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.Shape;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -29,6 +35,10 @@ public class SpeechEvaluationView extends FrameLayout {
 
     SpeechEvaluatorCallback speechEvaluatorCallback;
 
+    Drawable tapeBackground, volumeBackground;
+
+    int textSize, scoreTextSize, scoreBackgroundSize;
+
     public SpeechEvaluationView(Context context) {
         this(context, null);
     }
@@ -39,6 +49,24 @@ public class SpeechEvaluationView extends FrameLayout {
 
     public SpeechEvaluationView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SpeechEvaluationView);
+        tapeBackground = typedArray.getDrawable(R.styleable.SpeechEvaluationView_tapeBackground);
+        volumeBackground = typedArray.getDrawable(R.styleable.SpeechEvaluationView_volumeBackground);
+        textSize = typedArray.getDimensionPixelSize(R.styleable.SpeechEvaluationView_textSize, getResources().getDimensionPixelSize(R.dimen.text_size));
+
+        scoreTextSize = typedArray.getDimensionPixelSize(R.styleable.SpeechEvaluationView_scoreTextSize, getResources().getDimensionPixelSize(R.dimen.text_size));
+        scoreBackgroundSize = typedArray.getDimensionPixelSize(R.styleable.SpeechEvaluationView_scoreBackgroundSize, getResources().getDimensionPixelSize(R.dimen.scoreBackgroundSize));
+//        scoreBackground = typedArray.getDrawable(R.styleable.SpeechEvaluationView_scoreBackground);
+
+        if(tapeBackground == null) {
+            tapeBackground = getResources().getDrawable(R.drawable.selector_tape);
+        }
+        if(volumeBackground == null) {
+            volumeBackground = getResources().getDrawable(R.drawable.level_volume);
+        }
+//        if(scoreBackground == null) {
+//            scoreBackground = getResources().getDrawable(R.drawable.level_score);
+//        }
         this.context = context;
         init();
     }
@@ -50,6 +78,14 @@ public class SpeechEvaluationView extends FrameLayout {
         tvScore = (TextView) findViewById(R.id.tv_score);
         tvLabel = (TextView) findViewById(R.id.tv_label);
 
+        tvLabel.setTextSize(textSize);
+        tvScore.setTextSize(scoreTextSize);
+        tvScore.setBackgroundDrawable(setScoreBackgroundSize(scoreBackgroundSize));
+//        tvScore.setBackgroundDrawable(scoreBackground);
+
+        tvTape.setResourse(tapeBackground, volumeBackground, textSize);
+//        tvTape.setTapeBackground(tapeBackground);
+//        tvTape.setVolumeBackground(volumeBackground);
         tvTape.setOnTapeCallback(new TapeView.OnTapeCallback() {
             @Override
             public void start() {
@@ -96,6 +132,34 @@ public class SpeechEvaluationView extends FrameLayout {
                 tvTape.setVisibility(VISIBLE);
             }
         });
+    }
+
+    /**
+     * 设置最终得分的背景
+     * @param size
+     * @return
+     */
+    private LevelListDrawable setScoreBackgroundSize(int size) {
+        LevelListDrawable levelListDrawable = new LevelListDrawable();
+        GradientDrawable gradientDrawableLow = new GradientDrawable();
+        gradientDrawableLow.setShape(GradientDrawable.OVAL);
+        gradientDrawableLow.setColor(Color.parseColor("#ff344c"));
+        gradientDrawableLow.setSize(size, size);
+
+        GradientDrawable gradientDrawableMiddle = new GradientDrawable();
+        gradientDrawableMiddle.setShape(GradientDrawable.OVAL);
+        gradientDrawableMiddle.setColor(Color.parseColor("#ffa025"));
+        gradientDrawableMiddle.setSize(size, size);
+
+        GradientDrawable gradientDrawableHigh = new GradientDrawable();
+        gradientDrawableHigh.setShape(GradientDrawable.OVAL);
+        gradientDrawableHigh.setColor(Color.parseColor("#0dc67a"));
+        gradientDrawableHigh.setSize(size, size);
+
+        levelListDrawable.addLevel(0, 59, gradientDrawableLow);
+        levelListDrawable.addLevel(60, 79, gradientDrawableMiddle);
+        levelListDrawable.addLevel(80, 100, gradientDrawableHigh);
+        return levelListDrawable;
     }
 
     private SpeechEvaluatorUtil.EvaluatorCallback getEvaluatorCallback() {
@@ -149,7 +213,7 @@ public class SpeechEvaluationView extends FrameLayout {
         Drawable drawable = tvScore.getBackground();
         drawable.setLevel(score);
 
-        tvScore.setTextSize(72);
+        tvScore.setTextSize(scoreTextSize);
         tvScore.setText(String.valueOf(score));
     }
 
@@ -159,7 +223,7 @@ public class SpeechEvaluationView extends FrameLayout {
     private void setLoading() {
         Drawable drawable = tvScore.getBackground();
         drawable.setLevel(100);
-        tvScore.setTextSize(24);
+        tvScore.setTextSize(20);
         tvScore.setText("正在打分");
     }
 

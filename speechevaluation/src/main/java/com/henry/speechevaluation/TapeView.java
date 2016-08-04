@@ -1,6 +1,7 @@
 package com.henry.speechevaluation;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -54,6 +55,21 @@ public class TapeView extends FrameLayout {
         tvTime = (TimerView) findViewById(R.id.tv_time);
         cbTape.setOnTouchListener(new TapeOnTouchListener());
     }
+
+//    protected void setTapeBackground(Drawable drawable) {
+//        cbTape.setBackgroundDrawable(drawable);
+//    }
+//
+//    protected void setVolumeBackground(Drawable drawable) {
+//        ivVolume.setBackgroundDrawable(drawable);
+//    }
+
+    protected void setResourse(Drawable tapeBackground, Drawable volumeBackground, int textSize) {
+        cbTape.setBackgroundDrawable(tapeBackground);
+        ivVolume.setImageDrawable(volumeBackground);
+        tvTip.setTextSize(textSize);
+    }
+
 
     /**
      * 设置录音最长时长，超时就自动取消

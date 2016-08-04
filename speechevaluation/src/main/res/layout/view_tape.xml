@@ -32,7 +32,8 @@
 		android:layout_above="@id/fl_tape"
 		android:layout_centerHorizontal="true"
 		android:layout_marginBottom="40dp"
-		android:textSize="28sp"
+		android:textSize="24sp"
+		android:textColor="#343434"
 		android:text="按住录音"/>
 
 	<com.henry.speechevaluation.TimerView
@@ -41,8 +42,9 @@
 		android:layout_height="wrap_content"
 		android:layout_alignParentRight="true"
 		android:layout_alignBaseline="@id/tv_tip"
-		android:layout_marginRight="16dp"
+		android:layout_marginRight="30dp"
+		android:textColor="#343434"
 		android:textSize="28sp"
 		android:text="00:00"
-		android:visibility="gone"/>
+		android:visibility="visible"/>
 </RelativeLayout>

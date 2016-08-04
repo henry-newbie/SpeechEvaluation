@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         speechEvaluationView = (SpeechEvaluationView) findViewById(R.id.sev_speech);
-        speechEvaluationView.setContent(SpeechEvaluatorUtil.TYPE_LANGUAGE_EN, SpeechEvaluatorUtil.TYPE_CATEGORY_WORD, 5000, "hello");
+        speechEvaluationView.setContent(SpeechEvaluatorUtil.TYPE_LANGUAGE_EN, SpeechEvaluatorUtil.TYPE_CATEGORY_SENTENCE, 5290, "Good morning!I'm Miss Wu.what's your name?");
 //        speechEvaluationView.displayResult(20);
-//        speechEvaluationView.reset();
+        speechEvaluationView.reset();
         speechEvaluationView.setListener(new SpeechEvaluationView.SpeechEvaluatorCallback() {
             @Override
             public void onResult(int score) {
