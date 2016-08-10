@@ -252,7 +252,7 @@ public class SpeechEvaluationView extends FrameLayout {
     public void displayResult(int score) {
         tvTape.setVisibility(GONE);
         rlScore.setVisibility(VISIBLE);
-        tvLabel.setVisibility(GONE);
+        tvLabel.setVisibility(INVISIBLE);
         rlScore.setEnabled(false);
         setScore(score);
     }
@@ -265,6 +265,7 @@ public class SpeechEvaluationView extends FrameLayout {
         tvLabel.setVisibility(VISIBLE);
         rlScore.setVisibility(GONE);
         rlScore.setEnabled(true);
+        tvTape.setVolume(0);
     }
 
     public void setListener(SpeechEvaluatorCallback speechEvaluatorCallback) {
