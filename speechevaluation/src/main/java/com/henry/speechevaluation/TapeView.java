@@ -3,6 +3,7 @@ package com.henry.speechevaluation;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
@@ -68,7 +69,8 @@ public class TapeView extends RelativeLayout {
     protected void setResource(Drawable tapeBackground, Drawable volumeBackground, int textSize) {
         cbTape.setBackgroundDrawable(tapeBackground);
         ivVolume.setImageDrawable(volumeBackground);
-        tvTip.setTextSize(textSize);
+        tvTip.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+        tvTime.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
     }
 
 

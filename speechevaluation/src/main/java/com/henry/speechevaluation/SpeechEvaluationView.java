@@ -9,6 +9,7 @@ import android.graphics.drawable.LevelListDrawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -56,6 +57,8 @@ public class SpeechEvaluationView extends FrameLayout {
         scoreBackgroundSize = typedArray.getDimensionPixelSize(R.styleable.SpeechEvaluationView_scoreBackgroundSize, getResources().getDimensionPixelSize(R.dimen.scoreBackgroundSize));
 //        scoreBackground = typedArray.getDrawable(R.styleable.SpeechEvaluationView_scoreBackground);
 
+        typedArray.recycle();
+
         if(tapeBackground == null) {
             tapeBackground = getResources().getDrawable(R.drawable.selector_tape);
         }
@@ -76,8 +79,8 @@ public class SpeechEvaluationView extends FrameLayout {
         tvScore = (TextView) findViewById(R.id.tv_score);
         tvLabel = (TextView) findViewById(R.id.tv_label);
 
-        tvLabel.setTextSize(textSize);
-        tvScore.setTextSize(scoreTextSize);
+        tvLabel.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
+        tvScore.setTextSize(TypedValue.COMPLEX_UNIT_PX, scoreTextSize);
         tvScore.setBackgroundDrawable(setScoreBackgroundSize(scoreBackgroundSize));
 //        tvScore.setBackgroundDrawable(scoreBackground);
 
