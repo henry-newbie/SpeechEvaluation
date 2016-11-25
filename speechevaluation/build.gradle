@@ -17,6 +17,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -30,7 +34,7 @@ publish {
     userOrg = 'henry0311'
     groupId = 'com.henry'
     artifactId = 'SpeechEvaluation'
-    publishVersion = '1.0.8'
-    desc = 'fix bug'
+    publishVersion = '1.0.9'
+    desc = 'adjust ui'
     website = 'https://github.com/henry-newbie/SpeechEvaluation'
 }
