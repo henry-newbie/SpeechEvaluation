@@ -2,41 +2,37 @@
 <FrameLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
-	android:layout_height="wrap_content">
+	android:layout_height="wrap_content"
+	android:background="#999999">
 
 	<com.henry.speechevaluation.TapeView
 		android:id="@+id/tv_tape"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"/>
+		android:layout_height="match_parent" />
 
-	<RelativeLayout
+	<FrameLayout
 		android:id="@+id/rl_score"
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_gravity="center"
+		android:layout_height="match_parent"
 		android:visibility="gone">
+
+		<TextView
+			android:id="@+id/tv_score"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:background="@drawable/level_score"
+			android:gravity="center"
+			android:textColor="#ffffff" />
 
 		<TextView
 			android:id="@+id/tv_label"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_centerHorizontal="true"
-			android:layout_marginBottom="40dp"
+			android:layout_gravity="bottom|center_horizontal"
 			android:textSize="20sp"
 			android:textColor="#343434"
-			android:text="这是本次评测的成绩，点击重新评测"/>
-		
-		<TextView
-			android:id="@+id/tv_score"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:layout_below="@id/tv_label"
-			android:background="@drawable/level_score"
-			android:layout_centerInParent="true"
-			android:gravity="center"
-			android:textColor="#ffffff"
-			android:text="正在打分"/>
+			android:text="评测成绩，点击重测"/>
 
-	</RelativeLayout>
+	</FrameLayout>
 </FrameLayout>

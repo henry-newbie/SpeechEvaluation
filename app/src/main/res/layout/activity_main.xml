@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.henry.speechevaluationdemo.MainActivity">
 
     <com.henry.speechevaluation.SpeechEvaluationView
         android:id="@+id/sev_speech"
         android:layout_width="match_parent"
-        android:layout_height="269dp"
-        android:layout_marginTop="16dp"
-        android:paddingTop="30dp"
-        android:paddingBottom="40dp"
+        android:layout_height="wrap_content"
         app:tapeBackground="@drawable/selector_tape"
         app:volumeBackground="@drawable/level_volume"
         app:labelTextSize="18sp"
-        app:scoreTextSize="48sp"
+        app:scoreTextSize="32sp"
         app:scoreBackgroundSize="120dp"/>
-</RelativeLayout>
+
+</LinearLayout>

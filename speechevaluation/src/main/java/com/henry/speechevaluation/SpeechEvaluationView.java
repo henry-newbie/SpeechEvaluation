@@ -24,7 +24,7 @@ public class SpeechEvaluationView extends FrameLayout {
 
     TapeView tvTape;
 
-    RelativeLayout rlScore;
+    FrameLayout rlScore;
 
     TextView tvScore, tvLabel;
 
@@ -75,7 +75,7 @@ public class SpeechEvaluationView extends FrameLayout {
     private void init() {
         inflate(context, R.layout.view_speech_evaluation, this);
         tvTape = (TapeView) findViewById(R.id.tv_tape);
-        rlScore = (RelativeLayout) findViewById(R.id.rl_score);
+        rlScore = (FrameLayout) findViewById(R.id.rl_score);
         tvScore = (TextView) findViewById(R.id.tv_score);
         tvLabel = (TextView) findViewById(R.id.tv_label);
 
@@ -114,7 +114,7 @@ public class SpeechEvaluationView extends FrameLayout {
 
                 setLoading();
                 rlScore.setVisibility(VISIBLE);
-                tvTape.setVisibility(GONE);
+                tvTape.setVisibility(INVISIBLE);
             }
 
             @Override
@@ -214,7 +214,7 @@ public class SpeechEvaluationView extends FrameLayout {
         Drawable drawable = tvScore.getBackground();
         drawable.setLevel(score);
 
-        tvScore.setTextSize(scoreTextSize);
+        tvScore.setTextSize(TypedValue.COMPLEX_UNIT_PX, scoreTextSize);
         tvScore.setText(String.valueOf(score));
     }
 
@@ -224,7 +224,7 @@ public class SpeechEvaluationView extends FrameLayout {
     private void setLoading() {
         Drawable drawable = tvScore.getBackground();
         drawable.setLevel(100);
-        tvScore.setTextSize(20);
+        tvScore.setTextSize(TypedValue.COMPLEX_UNIT_PX, scoreTextSize / 2);
         tvScore.setText("正在打分");
     }
 
@@ -253,7 +253,7 @@ public class SpeechEvaluationView extends FrameLayout {
      * @param score
      */
     public void displayResult(int score) {
-        tvTape.setVisibility(GONE);
+        tvTape.setVisibility(INVISIBLE);
         rlScore.setVisibility(VISIBLE);
         tvLabel.setVisibility(INVISIBLE);
         rlScore.setEnabled(false);

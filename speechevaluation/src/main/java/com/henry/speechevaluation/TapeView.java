@@ -9,13 +9,14 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
  * Created by henry on 2016/7/26.
  */
-public class TapeView extends RelativeLayout {
+public class TapeView extends LinearLayout {
 
     Context context;
 
@@ -85,7 +86,7 @@ public class TapeView extends RelativeLayout {
             public void onFinish() {
                 isTimeout = true;
                 onTapeCallback.timeout();
-                tvTime.setVisibility(GONE);
+                tvTime.setVisibility(INVISIBLE);
             }
         });
     }
@@ -159,7 +160,7 @@ public class TapeView extends RelativeLayout {
                         break;
                     }
 
-                    tvTime.setVisibility(GONE);
+                    tvTime.setVisibility(INVISIBLE);
                     tvTime.stop();
 
                     // 如果录音时间小于0.3秒则无效
