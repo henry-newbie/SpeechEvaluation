@@ -34,7 +34,7 @@ publish {
     userOrg = 'henry0311'
     groupId = 'com.henry'
     artifactId = 'SpeechEvaluation'
-    publishVersion = '1.0.9'
-    desc = 'adjust ui'
+    publishVersion = '1.1.2'
+    desc = 'fix bug'
     website = 'https://github.com/henry-newbie/SpeechEvaluation'
 }

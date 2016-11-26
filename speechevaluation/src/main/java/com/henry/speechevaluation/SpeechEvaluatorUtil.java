@@ -30,15 +30,20 @@ public class SpeechEvaluatorUtil {
 
     EvaluatorCallback evaluatorCallback;
 
+//    private String recordPath;
+
+    private Context context;
+
     public static void createUtility(Context context, String appId) {
         SpeechUtility.createUtility(context, "appid=" + appId);
     }
 
     public void init(Context context) {
+        this.context = context;
         mIse = SpeechEvaluator.createEvaluator(context, null);
     }
 
-    public void setParams(String language, String category, String timeout) {
+    public void setParams(String language, String category, String timeout, String recordPath) {
         mIse.setParameter(SpeechConstant.LANGUAGE, language);
         mIse.setParameter(SpeechConstant.ISE_CATEGORY, category);
         mIse.setParameter(SpeechConstant.TEXT_ENCODING, "utf-8");
@@ -54,7 +59,11 @@ public class SpeechEvaluatorUtil {
         // 设置音频保存路径，保存音频格式支持pcm、wav，设置路径为sd卡请注意WRITE_EXTERNAL_STORAGE权限
         // 注：AUDIO_FORMAT参数语记需要更新版本才能生效
         mIse.setParameter(SpeechConstant.AUDIO_FORMAT, "wav");
-        mIse.setParameter(SpeechConstant.ISE_AUDIO_PATH, Environment.getExternalStorageDirectory().getAbsolutePath() + "/msc/ise.wav");
+        if(TextUtils.isEmpty(recordPath)) {
+            recordPath = context.getExternalFilesDir("record/record.wav").getAbsolutePath();
+//            recordPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/msc/ise.wav";
+        }
+        mIse.setParameter(SpeechConstant.ISE_AUDIO_PATH, recordPath);
     }
 
     /**
@@ -65,6 +74,22 @@ public class SpeechEvaluatorUtil {
     public void setmEvaluatorCallback(EvaluatorCallback evaluatorCallback) {
         this.evaluatorCallback = evaluatorCallback;
     }
+
+//    /**
+//     * 设置录音保存路径
+//     * @param path
+//     */
+//    public void setRecordPath(String path) {
+//        recordPath = path;
+//    }
+//
+//    /**
+//     * 获取录音文件路径
+//     * @return
+//     */
+//    public String getRecordPath() {
+//        return recordPath;
+//    }
 
     /**
      * 设置评测语言（TYPE_LANGUAGE_CN，TYPE_LANGUAGE_EN）

@@ -38,6 +38,8 @@ public class SpeechEvaluationView extends FrameLayout {
 
     int textSize, scoreTextSize, scoreBackgroundSize;
 
+    String recordPath;
+
     public SpeechEvaluationView(Context context) {
         this(context, null);
     }
@@ -92,7 +94,7 @@ public class SpeechEvaluationView extends FrameLayout {
             public void start() {
                 Log.e("start", "start");
                 if(speechEvaluatorUtil != null) {
-                    speechEvaluatorUtil.setParams(language, category, "-1");
+                    speechEvaluatorUtil.setParams(language, category, "-1", recordPath);
                     speechEvaluatorUtil.start(content, getEvaluatorCallback());
                 }
             }
@@ -270,6 +272,23 @@ public class SpeechEvaluationView extends FrameLayout {
         rlScore.setEnabled(true);
         tvTape.setVolume(0);
     }
+
+    /**
+     * 设置录音文件路径
+     * @param path
+     */
+    public void setRecordPath(String path) {
+        this.recordPath = path;
+    }
+
+    /**
+     * 获取录音文件路径
+     * @return
+     */
+    public String getRecordPath() {
+        return recordPath;
+    }
+
 
     public void setListener(SpeechEvaluatorCallback speechEvaluatorCallback) {
         this.speechEvaluatorCallback = speechEvaluatorCallback;
