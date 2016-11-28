@@ -25,6 +25,18 @@ public class MainActivity extends AppCompatActivity {
             public void onResult(int score) {
                 Toast.makeText(MainActivity.this, score + "", Toast.LENGTH_LONG).show();
             }
+
+            @Override
+            public void onRetry() {
+
+            }
+
+            @Override
+            public void onStart() {
+
+            }
         });
+
+        speechEvaluationView.showScore(93);
     }
 }

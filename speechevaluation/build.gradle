@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 23
-        versionCode 9
-        versionName "1.0.8"
+        versionCode 20
+        versionName "1.1.6"
     }
     buildTypes {
         release {
@@ -34,7 +34,7 @@ publish {
     userOrg = 'henry0311'
     groupId = 'com.henry'
     artifactId = 'SpeechEvaluation'
-    publishVersion = '1.1.2'
-    desc = 'fix bug'
+    publishVersion = '1.1.6'
+    desc = 'add showScore method'
     website = 'https://github.com/henry-newbie/SpeechEvaluation'
 }

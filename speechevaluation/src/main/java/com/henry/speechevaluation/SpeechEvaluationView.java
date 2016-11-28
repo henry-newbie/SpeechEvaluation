@@ -97,6 +97,9 @@ public class SpeechEvaluationView extends FrameLayout {
                     speechEvaluatorUtil.setParams(language, category, "-1", recordPath);
                     speechEvaluatorUtil.start(content, getEvaluatorCallback());
                 }
+                if(speechEvaluatorCallback != null) {
+                    speechEvaluatorCallback.onStart();
+                }
             }
 
             @Override
@@ -133,6 +136,9 @@ public class SpeechEvaluationView extends FrameLayout {
                 tvTape.setVolume(0);
                 rlScore.setVisibility(GONE);
                 tvTape.setVisibility(VISIBLE);
+                if(speechEvaluatorCallback != null) {
+                    speechEvaluatorCallback.onRetry();
+                }
             }
         });
     }
@@ -263,6 +269,16 @@ public class SpeechEvaluationView extends FrameLayout {
     }
 
     /**
+     * 显示分数
+     * @param score
+     */
+    public void showScore(int score) {
+        tvTape.setVisibility(INVISIBLE);
+        rlScore.setVisibility(VISIBLE);
+        setScore(score);
+    }
+
+    /**
      * 重置
      */
     public void reset() {
@@ -296,5 +312,7 @@ public class SpeechEvaluationView extends FrameLayout {
 
     public interface SpeechEvaluatorCallback {
         void onResult(int score);
+        void onRetry();
+        void onStart();
     }
 }
