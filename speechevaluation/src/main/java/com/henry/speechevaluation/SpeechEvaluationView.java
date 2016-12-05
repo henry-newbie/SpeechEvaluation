@@ -223,6 +223,7 @@ public class SpeechEvaluationView extends FrameLayout {
      * @param score
      */
     private void setScore(int score) {
+        tvScore.setBackgroundDrawable(setScoreBackgroundSize());
         Drawable drawable = tvScore.getBackground();
         drawable.setLevel(score);
 
@@ -234,8 +235,8 @@ public class SpeechEvaluationView extends FrameLayout {
      * 正在打分
      */
     private void setLoading() {
-        Drawable drawable = tvScore.getBackground();
-        drawable.setLevel(100);
+//        Drawable drawable = tvScore.getBackground();
+//        drawable.setLevel(100);
         tvScore.setTextSize(TypedValue.COMPLEX_UNIT_PX, scoreTextSize / 2);
         tvScore.setText("正在打分");
         tvScore.setBackgroundResource(R.drawable.bg_score);
