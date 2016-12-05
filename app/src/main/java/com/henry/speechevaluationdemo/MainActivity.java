@@ -37,6 +37,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        speechEvaluationView.showScore(93);
+        speechEvaluationView.showScore(60);
     }
 }
