@@ -13,6 +13,8 @@ import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechEvaluator;
 import com.iflytek.cloud.SpeechUtility;
 
+import java.io.File;
+
 /**
  * Created by henry on 2016/7/27.
  */
@@ -60,7 +62,16 @@ public class SpeechEvaluatorUtil {
         // 注：AUDIO_FORMAT参数语记需要更新版本才能生效
         mIse.setParameter(SpeechConstant.AUDIO_FORMAT, "wav");
         if(TextUtils.isEmpty(recordPath)) {
-            recordPath = context.getExternalFilesDir("record/record.wav").getAbsolutePath();
+            if(isMountedSDCard()) {
+                File file = context.getExternalFilesDir("record/record.wav");
+                if(file != null) {
+                    recordPath = file.getAbsolutePath();
+                } else {
+                    recordPath = context.getCacheDir().getPath() + "/record/record.wav";
+                }
+            } else {
+                recordPath = context.getCacheDir().getPath() + "/record/record.wav";
+            }
 //            recordPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/msc/ise.wav";
         }
         mIse.setParameter(SpeechConstant.ISE_AUDIO_PATH, recordPath);
@@ -253,5 +264,20 @@ public class SpeechEvaluatorUtil {
         void onResult(int score);
 
         void onError(String error);
+    }
+
+    /**
+     * 检查是否已挂载SD卡镜像（是否存在SD卡）
+     *
+     * @return
+     */
+    public static boolean isMountedSDCard() {
+        if (Environment.MEDIA_MOUNTED.equals(Environment
+                .getExternalStorageState())) {
+            return true;
+        } else {
+            Log.w("SpeechEvaluator", "SDCARD is not MOUNTED !");
+            return false;
+        }
     }
 }

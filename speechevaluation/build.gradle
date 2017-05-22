@@ -1,15 +1,18 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.henry-newbie'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
-        versionCode 23
-        versionName "1.1.9"
+        targetSdkVersion 21
+        versionCode 24
+        versionName "1.2.0"
     }
     buildTypes {
         release {
@@ -30,11 +33,11 @@ dependencies {
     compile files('libs/Sunflower.jar')
 }
 
-publish {
-    userOrg = 'henry0311'
-    groupId = 'com.henry'
-    artifactId = 'SpeechEvaluation'
-    publishVersion = '1.1.9'
-    desc = 'adjust ui'
-    website = 'https://github.com/henry-newbie/SpeechEvaluation'
-}
+//publish {
+//    userOrg = 'henry0311'
+//    groupId = 'com.henry'
+//    artifactId = 'SpeechEvaluation'
+//    publishVersion = '1.1.9'
+//    desc = 'adjust ui'
+//    website = 'https://github.com/henry-newbie/SpeechEvaluation'
+//}
